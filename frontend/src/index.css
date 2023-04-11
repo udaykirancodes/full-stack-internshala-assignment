@@ -1,0 +1,272 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,200;0,300;0,400;0,500;1,400&display=swap');
+
+:root {
+    --color-white:hsl(252,30%,100%);
+    --color-light:hsl(252,30%,95%);
+    --color-gray:hsl(252,15%,65%);
+    --color-primary:hsl(252,75%,60%);
+    --color-secondary:hsl(252,100%,90%);
+    --color-success:hsl(120,95%,65%);
+    --color-danger:hsl(0,95%,65%);
+    --color-dark:hsl(252,30%,17%);
+    --color-black:hsl(252,30%,10%);
+
+    /* sizes */
+    --border-radius : 2rem;
+    --card-border-radius:1rem;
+    --btn-padding:0.6rem 2rem;
+    --search-padding: 0.6rem 1rem;
+    --card-padding:1rem;
+    --sticky-top-left:6.4rem;
+    --sticky-top-right:-18rem;
+
+
+    --logo:1.5rem;
+    --h1-font-size:2.25rem;
+    --h2-font-size: 1.5rem;
+    --h3-font-size: 1.25rem;
+    --normal-font-size: 1rem;
+    --small-font-size: .875rem;
+    --smaller-font-size: .815rem;
+
+    --shadow :rgba(17, 12, 46, 0.15) 0px 48px 100px 0px;
+
+
+}
+
+@media screen and (max-width:768px) {
+    :root{
+        /* font sizes */
+        --big-font-size:1rem;
+        --h1-font-size:1.75rem;
+        --h2-font-size: 1.25rem;
+        --h3-font-size: 1.125rem;
+        --normal-font-size: .983rem;
+        --small-font-size: .813rem;
+        --smaller-font-size: .75rem;
+    }
+}
+
+*,
+*::after,
+*::before{
+    margin: 0;
+    padding: 0;
+    outline: none;
+    box-sizing: border-box;
+    text-decoration: none;
+    border: none;
+    transition: 200ms;
+    list-style: none;
+}
+a{
+    text-decoration: none;
+    color: inherit;
+}
+i{
+    font-size: 1.4rem;
+}
+body{
+    font-family: 'Poppins', sans-serif;
+    color: var(--color-dark);
+    background-color: var(--color-light);
+    overflow-x: hidden;
+}
+
+/* general styles */
+.container{
+    max-width: 1080px;
+    padding: 0 1rem;
+    margin:  0 auto;
+}
+.create{
+    position: relative;
+}
+.profile-photo{
+    width: 2.7rem;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    overflow: hidden;
+}
+.profile-options{
+    position: absolute;
+    top: 135%;
+    right: 0;
+    background-color: var(--color-white);
+    box-shadow: var(--shadow);
+    border-radius: 10px;
+    padding: 10px;
+    width: 8rem;
+    height: 0rem;
+    display: none;
+    transition: all 200ms ;
+}
+.profile-options.show {
+    display: flex;
+    height: 10rem;
+    flex-direction: column;
+    overflow: hidden;
+}
+.navoptions .uil{
+    margin: 0 px;
+}
+.profile-options .navoptions{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    margin: 5px 0;
+}
+.profile-options.show .navoptions:hover{
+    background-color: #ddd;
+    border-radius: 10px;
+}
+img{
+    width: 100%;
+    display: block;
+}
+.btn{
+    display: inline-block;
+    padding: var(--btn-padding);
+    font-weight: 500;
+    border-radius: var(--border-radius);
+    cursor: pointer;
+    transition: all 300ms ease;
+    font-size: .9rem;
+}
+.btn:hover{
+    opacity: .8;
+}
+.btn-primary{
+    background-color: var(--color-primary);
+    color: white;
+}
+
+.text-bold{
+    font-weight: 500;
+}
+.text-muted{
+    color: var(--color-gray);
+}
+
+
+
+
+::-webkit-scrollbar{
+    background-color: var(--color-gray);
+    width: 3px;
+    border-radius: 5px;
+}
+::-webkit-scrollbar-track{
+    background-color: var(--color-light);
+    width: 3px;
+}
+::-webkit-scrollbar-thumb{
+    width: 3px;
+    background-color: var(--color-gray);
+    border-radius: 5px;
+}
+.activechat{
+    background-color: var(--color-white);
+    border-radius: var(--normal-font-size);
+    padding: var(--card-padding);
+    position: relative;
+}
+.activechat .chathead{
+    padding: 10px;
+    border-bottom: 1px solid #eee;
+}
+.activechat .chathead .profile{
+    display: flex;
+    align-items: center;
+}
+.activechat .profile .profile-photo{
+    margin-right: 1rem;
+}
+.activechat .profile .head h4 , .activechat .profile .head p{
+    font-size: var(--small-font-size);
+}
+.activechat .chatRef .chatactive{
+    right: 1rem;
+}
+.activechat .chatbox .profile-photo{
+    width: 2rem;
+    height: 2rem;
+}
+
+
+/* login & logout  */
+
+
+/* sign in page */
+
+.search-bar{
+    position: relative;
+}
+.search-active{
+    display: block;
+    position: absolute;
+    top: 2.5rem;
+    width: 100%;
+}
+.search-users-list{
+    background-color: var(--color-white);
+    border-radius: var(--card-border-radius);
+    width: 100%;
+    padding: var(--card-padding);
+    box-shadow: var(--shadow);
+    left:  0;
+    width: 100%;
+    max-height: 300px;
+    overflow:  auto;
+}
+.search-users-list .request{
+    margin: 10px 0;
+    padding: 0;
+}
+.search-users-list .request:hover{
+    background-color: var(--color-light);
+    padding: var(--card-padding);
+    padding: 10px;
+    border-radius: var(--card-border-radius);
+}
+.search-users-list .request .info{
+    display: flex;
+    flex-direction: row;
+    margin-bottom: 0;
+}
+.search-users-list .request .info .profile-photo{
+    margin-right: 1rem;
+}
+
+.error{
+    color: red;
+}
+.invalid{
+    border: 1px solid red;
+}
+.valid{
+    border: 1px solid green;
+}
+@media screen and (max-width:968px) {
+    .right {
+        display: none;
+    }
+    main .container{
+        display: grid;
+        grid-template-columns: 1fr 2.5fr;
+        /* grid-template-columns: 18vh auto 20vh; */
+        column-gap: 2rem;
+        position: relative;
+    }
+}
+@media screen and (max-width:768px) {
+    .left , .right {
+        display: none;
+    }
+    main .container{
+        display: grid;
+        grid-template-columns: 1fr;
+        padding:var(--smaller-font-size);
+    }
+}

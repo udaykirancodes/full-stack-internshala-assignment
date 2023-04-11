@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const authRoutes = require('./Auth/index');
-router.use('/auth', authRoutes)
+// Login Normal
+router.get('/', (req, res) => res.send('login normal method'))
 
 module.exports = router;

@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router();
 
-const authRoutes = require('./Auth/index');
-router.use('/auth', authRoutes)
+router.get('/', (req, res) => res.send('register normal method'))
+
 
 module.exports = router;

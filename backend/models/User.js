@@ -8,6 +8,12 @@ const UserSchema = new UserSchema({
     password: {
         type: String,
         required: true
+    },
+    name: {
+        type: String,
+    },
+    contact: {
+        type: String,
     }
 }, { timestamps: true })
 
