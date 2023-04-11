@@ -1,0 +1,13 @@
+.home{
+    flex: 4;
+    margin-top: 100px;
+    margin-left: 300px;
+}
+.adminContainer{
+    display: flex;
+    height: 100px;
+}
+.homeWidgets{
+    display: flex;
+    margin: 20px;
+}

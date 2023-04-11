@@ -2,10 +2,11 @@ import React, { useContext, useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./auth.css";
+import { ToastContainer } from 'react-toastify';
+import { successToast, dangerToast } from '../components/Toast';
+import { loginurl } from '../urls';
 export default function Login() {
     const [eye, setEye] = useState(false);
-    const [loading, setLoading] = useState(false);
-
     const [error, setError] = useState('');
     const [input, setInput] = useState({
         email: "",
@@ -21,14 +22,37 @@ export default function Login() {
     const CloseEye = () => {
         setEye(false);
     }
-    const login = () => {
-        console.log('login button pressed')
+    function ValidateEmail(input) {
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (input.match(validRegex)) {
+            return true;
+        }
+        return false;
+    }
+    const login = async () => {
+        if (!ValidateEmail(input.email)) {
+            dangerToast("Enter Valid Email");
+            return;
+        }
+        if (!input.email || !input.password) {
+            dangerToast("Email & Password Required");
+            return;
+        }
+        let { data } = await axios.post(loginurl, input, { validateStatus: false });
+        if (!data.success) {
+            dangerToast(data.msg);
+        }
+        else {
+            const token = data.authToken;
+            localStorage.setItem('token', token);
+            navigate('/');
+        }
     }
     const navigate = useNavigate();
     return (
         <>
             <div className="container">
-                {/* <ToastContainer /> */}
+                <ToastContainer />
                 <div className="login-area">
                     <div className="loginMain">
                         <div className="loginLeft">
@@ -60,7 +84,7 @@ export default function Login() {
                             </div>
                             <div className="login-links">
                                 <p className="forgot-link">
-                                    <Link to="/forgot-password"> Forgot Password ?</Link>
+                                    {/* <Link to="/forgot-password"> Forgot Password ?</Link> */}
                                 </p>
                             </div>
                             <div className="button-container">

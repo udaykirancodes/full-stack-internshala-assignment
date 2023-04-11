@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from 'react'
 import "./auth.css";
 import { Link, useNavigate } from 'react-router-dom';
-
+import { ToastContainer } from 'react-toastify';
+import axios from "axios";
+import { registerurl } from '../urls';
+import { dangerToast } from '../components/Toast';
 export default function Register() {
     const [eye1, setEye1] = useState(false);
     const [eye2, setEye2] = useState(false);
@@ -9,15 +12,15 @@ export default function Register() {
     const [input, setInput] = useState({
         email: "",
         password: "",
-        username: "",
-        fullName: "",
+        contact: "",
+        name: "",
         confirmPassword: ""
     });
     const navigate = useNavigate();
     // handle Input
     const handleInput = (e) => {
-        console.log(input);
         setInput({ ...input, [e.target.name]: e.target.value })
+        console.log(input);
     }
     const OpenEye1 = () => {
         setEye1(true);
@@ -36,14 +39,43 @@ export default function Register() {
             setError('');
         }, 3000);
     }
-    const register = () => {
-        console.log('register button clicked')
+    function ValidateEmail(input) {
+        var validRegex = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/;
+        if (input.match(validRegex)) {
+            return true;
+        }
+        return false;
+    }
+
+    const register = async () => {
+        // validation
+        if (input.password !== input.confirmPassword) {
+            dangerToast("Password Mismatch");
+            return;
+        }
+        if (!input.email || !input.password || !input.name || !input.confirmPassword) {
+            dangerToast("All Fields are required");
+            return;
+        }
+        if (!ValidateEmail(input.email)) {
+            dangerToast("Enter Valid Email");
+            return;
+        }
+        let { data } = await axios.post(registerurl, input, { validateStatus: false });
+        if (!data.success) {
+            dangerToast(data.msg);
+        }
+        else {
+            const token = data.authToken;
+            localStorage.setItem('token', token);
+            navigate('/');
+        }
     }
     return (
         <>
             <div className="container">
                 <div className="login-area">
-                    {/* <ToastContainer /> */}
+                    <ToastContainer />
                     <div className="loginMain">
                         <div className="loginLeft">
                             <h3 className="logo">Register</h3>
@@ -64,22 +96,13 @@ export default function Register() {
                                 <div className="input_box">
                                     <label className="label">Full Name<span className="required">*</span></label>
                                     <div className="input_container">
-                                        <input type="text" className="input login-input" name="fullName" onChange={(e) => handleInput(e)} placeholder="Udaykiran Bandarugalla" required />
+                                        <input type="text" className="input login-input" name="name" onChange={(e) => handleInput(e)} placeholder="Udaykiran Bandarugalla" required />
                                     </div>
                                 </div>
-                                {/* <div className="input_box">
-                                    <label className="label">Username<span className="required">*</span></label>
-                                    <div className="input_container">
-                                        <input type="text" className="input login-input valid" name="username" onChange={(e) => handleInput(e)} placeholder="user1" required />
-                                    </div>
-                                </div> */}
                                 <div className="input_box">
                                     <label className="label">Contact <span className="required">*</span></label>
                                     <div className="input_container password-eye">
-                                        {
-                                            <i style={{ color: 'green' }} className="eye uil uil-cloud-block"></i>
-                                        }
-                                        <input type="text" className="input login-input" placeholder="contact" name="contact" onChange={(e) => handleInput(e)} required />
+                                        <input type="number" className="input login-input" placeholder="contact" name="contact" onChange={(e) => handleInput(e)} required />
                                     </div>
                                 </div>
                                 <div className="input_box">
@@ -105,7 +128,7 @@ export default function Register() {
                             </div>
                             <div className="login-links">
                                 <p className="forgot-link">
-                                    <Link to="/forgot-password"> Forgot Password ?</Link>
+                                    {/* <Link to="/forgot-password"> Forgot Password ?</Link> */}
                                 </p>
                             </div>
                             <div className="button-container">

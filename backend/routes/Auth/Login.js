@@ -16,7 +16,7 @@ router.post('/', async (req, res) => {
         const user = await UserModel.findOne({ email: email });
         if (!user) {
             // user not found
-            res.status(400).json({ success: false, msg: "User Not found" });
+            return res.status(400).json({ success: false, msg: "User Not found" });
         }
         // if found :: check password
         let comparePassword = await bcrypt.compare(password, user.password);
@@ -32,7 +32,7 @@ router.post('/', async (req, res) => {
         }
         let authToken = await jwt.sign(data, config.jwt)
         res.status(200).json({ success: true, authToken: authToken })
-
+        return
     } catch (error) {
         console.log(error.message);
         res.status(500).json({ success: false, msg: "Internal Server Error" })
