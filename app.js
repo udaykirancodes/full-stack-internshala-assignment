@@ -2,6 +2,7 @@ const cors = require('cors');
 const express = require('express');
 const app = express();
 const helmet = require('helmet')
+const path = require('path')
 // import middlewares
 app.use(express.json());
 app.use(cors());
@@ -12,12 +13,11 @@ app.use(cors(""))
 const routes = require('./routes/index');
 
 
-app.use('/', routes);
-app.get('/', (req, res) => res.send('UdayKiran👻'));
-
+app.use('/api', routes);
+app.use(express.static('./frontend/build'));
 // Static Files Sender
-// app.get('/', function (req, res) {
-//     res.sendFile(path.join(__dirname, '/client/build', 'index.html'));
-// });
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname, './frontend/build', 'index.html'));
+});
 
 module.exports = app;

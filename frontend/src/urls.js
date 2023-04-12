@@ -1,4 +1,4 @@
-export const backend = 'http://localhost:9000/';
+export const backend = 'http://localhost:9000/api/';
 export const loginurl = backend + 'auth/login';
 export const dataurl = backend + 'data';
 export const registerurl = backend + 'auth/register';
