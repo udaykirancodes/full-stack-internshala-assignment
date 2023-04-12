@@ -1,4 +1,5 @@
-export const backend = 'http://localhost:9000/api/';
+// export const backend = 'http://localhost:9000/api/';
+export const backend = 'https://mern-task-uday.onrender.com/api/';
 export const loginurl = backend + 'auth/login';
 export const dataurl = backend + 'data';
 export const registerurl = backend + 'auth/register';
