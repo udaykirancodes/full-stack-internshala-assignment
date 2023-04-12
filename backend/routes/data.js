@@ -20,7 +20,7 @@ const isUser = (req, res, next) => {
 
 router.get('/', isUser, async (req, res) => {
     try {
-        let id = req.user._id;
+        let id = req.user.id;
         let user = await User.findById(id);
         if (!user) {
             res.status(400).json({ success: false, msg: "Invalid User" });

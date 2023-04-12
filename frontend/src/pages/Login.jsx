@@ -97,7 +97,9 @@ export default function Login() {
                                 <div className="line"></div>
                             </div>
                             <div className="social-container">
-                                <button className="social-button btn">Login with Email OTP</button>
+                                <Link to="/loginotp">
+                                    <button className="social-button btn">Login with Email OTP</button>
+                                </Link>
                             </div>
                         </div>
                         <div className="loginRight">

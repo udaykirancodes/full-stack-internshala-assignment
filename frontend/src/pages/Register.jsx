@@ -141,7 +141,9 @@ export default function Register() {
                                 <div className="line"></div>
                             </div>
                             <div className="social-container">
-                                <button className="social-button btn">Register With OTP</button>
+                                <Link to="/registerotp">
+                                    <button className="social-button btn">Register With OTP</button>
+                                </Link>
                             </div>
                         </div>
                         <div className="loginRight">

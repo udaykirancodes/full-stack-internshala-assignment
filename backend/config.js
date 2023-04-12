@@ -11,5 +11,9 @@ module.exports = {
             useNewUrlParser: true,
         }
     },
+    email: {
+        id: process.env.EMAIL,
+        pass: process.env.APP_PASSWORD
+    },
     jwt: 'MY#SECRET@CODE$'
 }

@@ -12,21 +12,21 @@ export default function FeaturedInfo() {
         <>
             <div className="featured">
                 <div className="featuredItem">
-                    <span className="featuredTitle">Number of Users </span>
+                    <span className="featuredTitle">Heading 1 </span>
                     <div className="featuredMoneyContainer">
                         <span className="featuredMoney">{123}</span>
 
                     </div>
                 </div>
                 <div className="featuredItem">
-                    <span className="featuredTitle">Total Bookings</span>
+                    <span className="featuredTitle">Heading 2</span>
                     <div className="featuredMoneyContainer">
                         <span className="featuredMoney">{4524}</span>
 
                     </div>
                 </div>
                 <div className="featuredItem">
-                    <span className="featuredTitle">Pending Bookings</span>
+                    <span className="featuredTitle">Heading 3</span>
                     <div className="featuredMoneyContainer">
                         <span className="featuredMoney">
                             {
